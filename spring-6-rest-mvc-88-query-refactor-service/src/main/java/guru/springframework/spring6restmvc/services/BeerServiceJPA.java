@@ -33,7 +33,7 @@ public class BeerServiceJPA implements BeerService {
         if(StringUtils.hasText(beerName) && beerStyle == null) {
             beerList = listBeersByName(beerName);
         }
-        if(!StringUtils.hasText(beerName) && beerStyle !== null) {
+        if(!StringUtils.hasText(beerName) && beerStyle != null) {
             beerList = listBeersByStyle(beerStyle);
         }
         else {
