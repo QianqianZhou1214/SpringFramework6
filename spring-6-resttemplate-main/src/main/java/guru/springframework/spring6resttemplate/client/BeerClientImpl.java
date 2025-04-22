@@ -22,7 +22,7 @@ public class BeerClientImpl implements BeerClient {
         // get RestTemplate instance from builder
         RestTemplate restTemplate = restTemplateBuilder.build();
 
-        ResponseEntity<BeerDTOPageImpl> stringResponse =
+        ResponseEntity<BeerDTOPageImpl> response =
                 restTemplate.getForEntity(GET_BEER_PATH, BeerDTOPageImpl.class);
 /*
         ResponseEntity<String> stringResponse =
@@ -42,6 +42,6 @@ public class BeerClientImpl implements BeerClient {
                 });
 
         System.out.println(stringResponse.getBody());*/
-        return null;
+        return response.getBody();
     }
 }

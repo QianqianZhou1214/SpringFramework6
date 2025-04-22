@@ -11,12 +11,12 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true, value = "pageable")
 public class BeerDTOPageImpl<BeerDTO> extends PageImpl<guru.springframework.spring6resttemplate.model.BeerDTO> {
-    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES) // telling Jackson to use this constructor
+
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public BeerDTOPageImpl(@JsonProperty("content") List<guru.springframework.spring6resttemplate.model.BeerDTO> content,
                            @JsonProperty("number") int page,
                            @JsonProperty("size") int size,
                            @JsonProperty("totalElements") long total) {
-
         super(content, PageRequest.of(page, size), total);
     }
 
@@ -27,6 +27,4 @@ public class BeerDTOPageImpl<BeerDTO> extends PageImpl<guru.springframework.spri
     public BeerDTOPageImpl(List<guru.springframework.spring6resttemplate.model.BeerDTO> content) {
         super(content);
     }
-
-
 }
