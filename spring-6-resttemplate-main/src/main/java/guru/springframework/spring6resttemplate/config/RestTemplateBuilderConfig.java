@@ -15,7 +15,7 @@ public class RestTemplateBuilderConfig {
     String rootUrl;
 
     @Bean
-    RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer) {
+    RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer){
 
         assert rootUrl != null;
 
