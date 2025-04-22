@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@RepositoryRestResource(path = "beer")
+@RepositoryRestResource(path = "beer", collectionResourceRel = "beer")
 public interface BeerRepository extends JpaRepository<Beer, UUID> {
     Page<Beer> findAllByBeerName(String beerName, Pageable pageable);
 
