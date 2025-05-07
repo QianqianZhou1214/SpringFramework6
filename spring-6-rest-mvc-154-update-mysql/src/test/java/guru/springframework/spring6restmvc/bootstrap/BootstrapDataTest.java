@@ -28,7 +28,7 @@ class BootstrapDataTest {
 
     BootstrapData bootstrapData;
     @Autowired
-    private BeerOrderRepository beerOrderRepository;
+    BeerOrderRepository beerOrderRepository;
 
     @BeforeEach
     void setUp() {
