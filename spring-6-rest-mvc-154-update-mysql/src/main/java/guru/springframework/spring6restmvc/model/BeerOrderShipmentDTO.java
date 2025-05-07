@@ -1,13 +1,8 @@
 package guru.springframework.spring6restmvc.model;
 
 import guru.springframework.spring6restmvc.entities.BeerOrder;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Version;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.UUID;
