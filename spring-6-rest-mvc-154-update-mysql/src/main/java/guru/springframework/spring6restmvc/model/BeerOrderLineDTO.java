@@ -5,6 +5,7 @@ import guru.springframework.spring6restmvc.entities.BeerOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +30,7 @@ public class BeerOrderLineDTO {
 
     private BeerDTO beer;
 
+    @Min(value = 1, message = "Quantity On Hand must be greater than 0")
     private Integer orderQuantity;
     private Integer quantityAllocated;
 }

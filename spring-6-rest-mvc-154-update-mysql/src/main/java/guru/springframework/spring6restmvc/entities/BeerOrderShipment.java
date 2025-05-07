@@ -1,6 +1,8 @@
 package guru.springframework.spring6restmvc.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.type.SqlTypes;
@@ -31,6 +33,7 @@ public class BeerOrderShipment {
     @OneToOne
     private BeerOrder beerOrder;
 
+    @NotBlank
     private String trackingNumber;
 
     @Override
