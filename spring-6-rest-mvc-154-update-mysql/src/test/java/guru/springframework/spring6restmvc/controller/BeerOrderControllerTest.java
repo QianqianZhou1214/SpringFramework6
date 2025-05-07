@@ -60,5 +60,5 @@ class BeerOrderControllerTestIT {
                 .andExpect(jsonPath("$.id", is(beerOrder.getId().toString())));
     }
 
-    }
+
 }
