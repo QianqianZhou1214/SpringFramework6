@@ -26,6 +26,5 @@ public class BeerOrderShipmentDTO {
 
 
     private Timestamp createdDate;
-
     private Timestamp lastModifiedDate;
 }

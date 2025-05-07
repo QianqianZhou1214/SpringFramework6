@@ -23,8 +23,8 @@ public class BeerOrderDTO {
     private String customerRef;
     private CustomerDTO customer;
 
-    //todo update
-    private Set<BeerOrderLine> beerOrderLines;
-    private BeerOrderShipment beerOrderShipment;
+
+    private Set<BeerOrderLineDTO> beerOrderLines;
+    private BeerOrderShipmentDTO beerOrderShipment;
 
 }
