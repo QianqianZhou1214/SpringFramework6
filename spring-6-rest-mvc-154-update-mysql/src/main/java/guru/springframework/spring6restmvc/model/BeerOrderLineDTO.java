@@ -26,11 +26,9 @@ public class BeerOrderLineDTO {
 
     private Timestamp lastModifiedDate;
 
-    public boolean isNew() { return this.id == null; }
-
 
     private BeerDTO beer;
 
-    private Integer orderQuantity = 0;
-    private Integer quantityAllocated = 0;
+    private Integer orderQuantity;
+    private Integer quantityAllocated;
 }
