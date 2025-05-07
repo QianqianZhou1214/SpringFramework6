@@ -31,8 +31,8 @@ public class BeerOrderServiceImpl implements BeerOrderService {
         if (pageNumber == null || pageNumber < 0) {
             pageNumber = 0;
         }
-        if (pageNumber == null || pageNumber < 1) {
-            pageNumber = 25;
+        if (pageSize == null || pageSize < 1) {
+            pageSize = 25;
         }
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
 
