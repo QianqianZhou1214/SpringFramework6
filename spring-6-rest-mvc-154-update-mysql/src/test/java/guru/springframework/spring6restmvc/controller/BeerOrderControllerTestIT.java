@@ -1,6 +1,12 @@
 package guru.springframework.spring6restmvc.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import guru.springframework.spring6restmvc.model.BeerOrderCreateDTO;
+import guru.springframework.spring6restmvc.model.BeerOrderLineCreateDTO;
 import guru.springframework.spring6restmvc.repositories.BeerOrderRepository;
+import guru.springframework.spring6restmvc.repositories.BeerRepository;
+import guru.springframework.spring6restmvc.repositories.CustomerRepository;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,14 +19,14 @@ import static guru.springframework.spring6restmvc.controller.BeerControllerTest.
 import static org.hamcrest.Matchers.is;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Set;
+
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 class BeerOrderControllerTestIT {
@@ -33,11 +39,40 @@ class BeerOrderControllerTestIT {
     @Autowired
     private BeerOrderRepository beerOrderRepository;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
+    BeerRepository beerRepository;
+
+    @Autowired
+    ObjectMapper objectMapper;
+
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac)
                 .apply(springSecurity())
                 .build();
+    }
+
+    @Test
+    void testCreateBeerOrder() throws Exception {
+        val customer = customerRepository.findAll().get(0);
+        val beer = beerRepository.findAll().get(0);
+        val beerOrderCreateDTO = BeerOrderCreateDTO.builder()
+                .customerId(customer.getId())
+                .beerOrderLines(Set.of(BeerOrderLineCreateDTO.builder()
+                        .beerId(beer.getId())
+                        .orderQuantity(1)
+                        .build()))
+                .build();
+
+        mockMvc.perform(post(BeerOrderController.BEER_ORDER_PATH)
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(beerOrderCreateDTO))
+                .with(jwtRequestPostProcessor))
+                .andExpect(status().isCreated())
+                .andExpect(header().exists("Location"));
     }
 
     @Test
