@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.is;
 
 import static org.hamcrest.Matchers.greaterThan;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.HashSet;
@@ -56,6 +57,7 @@ class BeerOrderControllerTestIT {
                 .build();
     }
 
+    @Transactional
     @Test
     void testUpdateOrder() throws Exception {
         val beerOrder = beerOrderRepository.findAll().get(0);
