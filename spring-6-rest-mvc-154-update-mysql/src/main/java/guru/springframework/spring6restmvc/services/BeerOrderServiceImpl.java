@@ -110,4 +110,13 @@ public class BeerOrderServiceImpl implements BeerOrderService {
 
         return beerOrderMapper.beerOrderToBeerOrderDto(beerOrderRepository.save(order));
     }
+
+    @Override
+    public void deleteOrder(UUID beerOrderId) {
+        if (beerOrderRepository.existsById(beerOrderId)) {
+            beerOrderRepository.deleteById(beerOrderId);
+        } else {
+            throw new NotFoundException();
+        }
+    }
 }
